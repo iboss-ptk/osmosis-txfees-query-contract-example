@@ -2,6 +2,13 @@
 
 Try it for yourself, if you want to test this contract out, simply run:
 
+
+```sh
+cargo install -f beaker 
+```
+
+If you haven't yet, then:
+
 ```sh
 beaker task run deploy_and_query -- --deploy false
 ```
@@ -15,3 +22,5 @@ beaker task run deploy_and_query -- --deploy true
 ```
 
 If you want to playaround with it.
+
+
