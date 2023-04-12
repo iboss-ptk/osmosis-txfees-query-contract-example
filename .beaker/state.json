@@ -1,9 +1,9 @@
 {
   "testnet": {
     "txfees-query": {
-      "code_id": 6764,
+      "code_id": 6765,
       "addresses": {
-        "default": "osmo15kzkfe9y6cwdqn3dql3f89h0ph4y6y53089adnrt7xrqu9petmcs09604v"
+        "default": "osmo1tyn2tl03ygpke4wyh9nq9juqd6d8wahr0fv45955l3d486mvr68qkzw563"
       },
       "proposal": {
         "store_code": null

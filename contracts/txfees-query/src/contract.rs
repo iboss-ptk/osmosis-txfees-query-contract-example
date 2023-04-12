@@ -1,11 +1,10 @@
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 use cosmwasm_std::{
-    to_binary, to_vec, Binary, ContractResult, Deps, DepsMut, Empty, Env, MessageInfo, Reply,
-    Response, StdError, StdResult, SystemResult,
+    to_binary, Binary, Deps, DepsMut, Env, MessageInfo, Reply, Response, StdResult,
 };
 use cw2::set_contract_version;
-use osmosis_std::types::osmosis::txfees::v1beta1::{QueryFeeTokensRequest, TxfeesQuerier};
+use osmosis_std::types::osmosis::txfees::v1beta1::TxfeesQuerier;
 
 use crate::error::ContractError;
 use crate::msg::{ExecuteMsg, InstantiateMsg, MigrateMsg, QueryMsg};
@@ -68,24 +67,7 @@ pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
     let txfees_querier = TxfeesQuerier::new(&deps.querier);
     match msg {
         QueryMsg::QueryDenomPoolId { denom } => to_binary(&txfees_querier.denom_pool_id(denom)?),
-        QueryMsg::QueryFeeTokens {} => {
-            let raw = to_vec(&cosmwasm_std::QueryRequest::<Empty>::from(
-                QueryFeeTokensRequest {},
-            ))
-            .map_err(|serialize_err| {
-                StdError::generic_err(format!("Serializing QueryRequest: {}", serialize_err))
-            })?;
-            match deps.querier.raw_query(&raw) {
-                SystemResult::Err(system_err) => Err(StdError::generic_err(format!(
-                    "Querier system error: {}",
-                    system_err
-                ))),
-                SystemResult::Ok(ContractResult::Err(contract_err)) => Err(StdError::generic_err(
-                    format!("Querier contract error: {}", contract_err),
-                )),
-                SystemResult::Ok(ContractResult::Ok(value)) => Ok(value),
-            }
-        }
+        QueryMsg::QueryFeeTokens {} => to_binary(&txfees_querier.fee_tokens()?),
     }
 }
 
