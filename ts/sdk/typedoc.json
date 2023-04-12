@@ -1,0 +1,7 @@
+{
+  "out": "./docs",
+  "name": "txfees-test",
+  "theme": "markdown",
+  "readme": "none",
+  "tsconfig": "./tsconfig.bundle.json"
+}
