@@ -13,7 +13,7 @@ If you haven't yet, then:
 beaker task run deploy_and_query -- --deploy false
 ```
 
-Since it has already deploy on testnet. This will run task in `tasks/deploy_and_query.rhai`, which will skip deployment and perform the query.
+Since it has already deploy on testnet. This will run task in [`tasks/deploy_and_query.rhai`](tasks/deploy_and_query.rhai), which will skip deployment and perform the query.
 
 You can change the contract content and run:
 
